@@ -27,10 +27,10 @@ jobs:
   build:
     needs: [setup]
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ needs.setup.outputs.environment_name }}
+    env:
+      ENVIRONMENT_NAME: ${{ needs.setup.outputs.environment_name }}
 
     steps:
       - name: environment check
         id: repocheck
-        run: echo "${{ needs.setup.outputs.environment_name }}"
+        run: echo "#ENVIRONMENT_NAME"
