@@ -33,4 +33,4 @@ jobs:
     steps:
       - name: environment check
         id: repocheck
-        run: echo "#ENVIRONMENT_NAME"
+        run: echo "$ENVIRONMENT_NAME"
