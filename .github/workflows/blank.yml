@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+name: Development - Build and Deploy (Harness)
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      environment_name: ${{steps.environment_name.outputs.environment_name}}
+    steps:
+      - name: Get environment name
+        id: environment_name
+        run: |
+            echo "Running on branch ${GITHUB_REF##*/}"
+            if [ "${GITHUB_REF##*/}" = "master" ]; then
+              echo "environment_name=prod" >> $GITHUB_OUTPUT
+            elif [ "${GITHUB_REF##*/}" = "dev" ]; then
+              echo "environment_name=dev" >> $GITHUB_OUTPUT
+            elif [ "${GITHUB_REF##*/}" = "release" ]; then
+              echo "environment_name=release" >> $GITHUB_OUTPUT
+            else
+              echo "environment_name=feature" >> $GITHUB_OUTPUT
+            fi
+
+  build:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ needs.setup.outputs.environment_name }}
+			
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: environment check
+        id: repocheck
+        run: |
+          echo $name
+					
