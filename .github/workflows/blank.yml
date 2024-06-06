@@ -26,10 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: ${{ needs.setup.outputs.environment_name }}
-			
-    permissions:
-      id-token: write
-      contents: read
+
     steps:
       - name: environment check
         id: repocheck
