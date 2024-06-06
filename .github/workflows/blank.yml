@@ -30,6 +30,4 @@ jobs:
     steps:
       - name: environment check
         id: repocheck
-        run: |
-          echo $environment_name
-					
+        run: echo $environment_name
