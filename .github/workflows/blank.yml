@@ -34,5 +34,5 @@ jobs:
       - name: environment check
         id: repocheck
         run: |
-          echo $name
+          echo $environment_name
 					
